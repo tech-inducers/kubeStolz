@@ -45,7 +45,7 @@ Fig 3 Information system view
 
 Fig 4 gcp-aws multicloud cluster creation using terraform
 
-https://github.com/tech-inducers/kubeStolz
+[Github code repo](https://github.com/tech-inducers/kubeStolz)
 
 ## Improvement Area
 * Network canvas engine
