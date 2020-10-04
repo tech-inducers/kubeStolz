@@ -8,7 +8,7 @@ KubeStolz is a open-source multicloud hybrid kubernetes cluster fully lifecycle 
 * Management layer that include promethus and grafana as a management dashboard
 * password and security management can be also be integrated and can be stored cloud specific or on-prem secrets and certificates  
 
-![](https://github.com/tech-inducers/kubeStolz/blob/master/images/kubestloz_Roadmap.jpg)
+![](images/kubestloz_Roadmap.jpg)
 Fig 1 KubeStloz frmaework
 
 ## concept
