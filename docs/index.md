@@ -9,12 +9,13 @@ KubeStolz is a open-source multicloud hybrid kubernetes cluster fully lifecycle 
 * password and security management can be also be integrated and can be stored cloud specific or on-prem secrets and certificates  
 
 ![](images/kubestloz_Roadmap.jpg)
+
 Fig 1 KubeStloz frmaework
 
 ## concept
 It has been designed to provide the view of multicloud or hybrid cloud environment -control-plane/controller can be fully managed by organization specific private cloud or bare-metal kubenetes installation 
 
-![](https://github.com/tech-inducers/kubeStolz/blob/master/images/kubestloz_mulicloud-conecpt.jpg)
+![](images/kubestloz_mulicloud-conecpt.jpg)
 
 Fig 2 Hybrid kubernetes cluster concept
 
@@ -27,7 +28,7 @@ Fig 2 Hybrid kubernetes cluster concept
 
 ## Road-Map
 
-![](https://github.com/tech-inducers/kubeStolz/blob/master/images/kubestloz_roadmap_arch_update.jpg)
+![](images/kubestloz_roadmap_arch_update.jpg)
 
 Fig 3 Information system view
 ### Components
@@ -40,7 +41,7 @@ Fig 3 Information system view
 
 ## Current-state
 
-![](https://github.com/tech-inducers/kubeStolz/blob/master/images/automated-network-deployment-3-architecture.svg)
+![](images/automated-network-deployment-3-architecture.svg)
 
 Fig 4 gcp-aws multicloud cluster creation using terraform
 
