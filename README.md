@@ -23,6 +23,7 @@ Jinja 2.11 (or newer) is required to run the Ansible Playbooks
 
 # Terraform execution
 
+go to dev directory
 $terraform init
 
 $terraform validate
@@ -34,7 +35,7 @@ $terraform apply
 # Kubespray execution
 
 git clone https://github.com/kubernetes-sigs/kubespray.git
-
+go to kubespray directory
 Install dependencies from requirements.txt
 sudo pip3 install -r requirements.txt
 
