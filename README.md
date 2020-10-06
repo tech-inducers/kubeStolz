@@ -9,7 +9,7 @@ if you have questions, check the documentation and join us on the   #kubeStloz Y
 
 # Prerequisite
 
-# Install terraform
+Install terraform
 
 https://www.terraform.io/downloads.html
 
@@ -17,7 +17,7 @@ https://www.terraform.io/downloads.html
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubespray/
 
-# install ansible and jinja
+install ansible and jinja
 Ansible v2.9 and python-netaddr is installed on the machine that will run Ansible commands
 Jinja 2.11 (or newer) is required to run the Ansible Playbooks
 
@@ -32,7 +32,7 @@ $terraform plan
 $terraform apply
 
 # Kubespray execution
-# Clone kubespray
+
 git clone https://github.com/kubernetes-sigs/kubespray.git
 
 # Install dependencies from requirements.txt
@@ -50,7 +50,7 @@ all:
       ansible_host: 54.200.87.20 (public ip of aws ec2)
 
       ansible_ssh_user: ubuntu (ec2 username defined in terraform)
-      
+
       ansible_ssh_private_key_file: (file path to ec2 pem file
       ip: 10.0.0.25 (private ip of aws ec2)
       access_ip: 10.0.0.25 (private ip of aws ec2)
