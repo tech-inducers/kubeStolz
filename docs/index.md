@@ -1,112 +1,54 @@
-# kubeStolz
-kubeStolz is hybrid multi cloud Kubernetes cluster
+# Welcome to the kubeStolz
 
-Deploy a multicloud dev Kubernetes Cluster (GCP vm and AWS ec2 and its vpn connection)
+## Introduction
+KubeStolz is a open-source multicloud hybrid kubernetes cluster fully lifecycle management framework, it has been designed in the view of following layers and can be tailored using organisation specific requirments 
 
+* Infrastructure as a code that using terraform include file/object storage  selection of cluster creation tool kubeadm,kubespray and kops(only applicable for public cloud infrastructure)
+* Application development and log management using helm chart
+* Management layer that include promethus and grafana as a management dashboard
+* password and security management can be also be integrated and can be stored cloud specific or on-prem secrets and certificates  
 
-Quick Start
-if you have questions, check the documentation  https://github.com/tech-inducers/kubeStolz/wiki and join us on the #kubeStloz
-# Prerequisite
+![](https://github.com/tech-inducers/kubeStolz/blob/master/images/kubestloz_Roadmap.jpg)
+Fig 1 KubeStloz frmaework
 
-Install terraform
+## concept
+It has been designed to provide the view of multicloud or hybrid cloud environment -control-plane/controller can be fully managed by organization specific private cloud or bare-metal kubenetes installation 
 
-https://www.terraform.io/downloads.html
+![](https://github.com/tech-inducers/kubeStolz/blob/master/images/kubestloz_mulicloud-conecpt.jpg)
 
-# Create cluster using kubespray
+Fig 2 Hybrid kubernetes cluster concept
 
-https://kubernetes.io/docs/setup/production-environment/tools/kubespray/
+## Use case(s) that applicable for multicloud hybrid kubenetes cluster
+* Organization is using cloud specific databases and application that requires access to the same - can be opt for cluster worker
+* Organization is using cloud virtual machine for specific needs and application that requires access to the same - can be opt for cluster worker
+* Organization is using cloud specific data-warehouse and application that requires access to the same - can be opt for cluster worker
+* cost-effective solution 
+* organization requires to control the multi cloud provider/single cloud provider specific virtual machine and specific service under single umbrella - with the help of kubernetes control plane/controller in private cloud/oranization controlled data center
 
-install ansible and jinja
-Ansible v2.9 and python-netaddr is installed on the machine that will run Ansible commands
-Jinja 2.11 (or newer) is required to run the Ansible Playbooks
+## Road-Map
 
-# Terraform execution
+![](https://github.com/tech-inducers/kubeStolz/blob/master/images/kubestloz_roadmap_arch_update.jpg)
 
-go to dev directory
+Fig 3 Information system view
+### Components
+* Network canavas engine - for drawing production grade network design for the multicloud cluster, it shall generate json files and can be converted hcl for terraform specific configuration file
+* Restful Service for CRUD operation of cluster - output will be converted to hcl for terraform execution
+* BMP engine for approval and process specific workflow for network design
+* Terraform to execute user specific kubernetes tool selection -that include kubeadm,kops or kubesray
+* Terraform to execute helm specific charts for application development,log and management dashboard
+* Openid/corporate idm integration with netowrk canvas/restful service authentication and authorization
 
-$terraform init
+## Current-state
 
-$terraform validate
+![](https://github.com/tech-inducers/kubeStolz/blob/master/images/automated-network-deployment-3-architecture.svg)
 
-$terraform plan
+Fig 4 gcp-aws multicloud cluster creation using terraform
 
-$terraform apply
+https://github.com/tech-inducers/kubeStolz
 
-# Kubespray execution
+## Improvement Area
+* Network canvas engine
+* Restful service
+* Open source bpm integration
+* Openid/corporate idm integration
 
-git clone https://github.com/kubernetes-sigs/kubespray.git
-
-go to kubespray directory
-
-Install dependencies from requirements.txt
-
-sudo pip3 install -r requirements.txt
-
-Copy inventory/sample  as inventory/mycluster
-cp -rfp inventory/sample inventory/mycluster
-
-# create inventory file
-Example file
-all:
-  hosts:
-    ip-10-0-0-25: (hostname defined in terraform for aws ec2)
-
-      ansible_host: 54.200.87.20 (public ip of aws ec2)
-
-      ansible_ssh_user: ubuntu (ec2 username defined in terraform)
-
-      ansible_ssh_private_key_file: (file path to ec2 pem file
-      ip: 10.0.0.25 (private ip of aws ec2)
-      access_ip: 10.0.0.25 (private ip of aws ec2)
-
-    gcp-vm-us-central1:
-      ansible_host: 34.71.104.88 (public ip of gcp vm)
-      ip: 10.240.0.100 (private ip of gcp vm)
-      access_ip: 10.240.0.100 (private ip of gcp vm)
-
-  children:
-    kube-master:
-      hosts:
-        gcp-vm-us-central1: (master node we deined as gcp vm)
-
-    kube-node:
-      hosts:
-        ip-10-0-0-25: (aws ec2 vm hostname)
-        gcp-vm-us-central1: (gcp vm hostname)
-
-    etcd:
-      hosts:
-gcp-vm-us-central1: (master hostname)
-
-    k8s-cluster:
-      children:
-        kube-master:
-        kube-node:
-    calico-rr:
-      hosts: {}
-
-
-# check ssh connection of aws ec2 and gcp vm
-ansible -i  path to hosts.yml file -m shell -a 'hostnamectl' all
-
-# create cluster using kubespray ansible command
-ansible-playbook -I path to hosts.yml file   --become --become-user=root cluster.yml
-
-# rerun create cluster if it fails or skipped
-
-# validate cluster creation
-
-$kubectl get all --all-namespaces
-
-if you find the The connection to the server localhost:8080 was refused - did you specify the right host or port?
-
-Follow the following steps
-# ssh to master node
-
-$mkdir -p $HOME/.kube
-
-$sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-
-$udo chmod 777 $HOME/.kube/config
-
-$kubectl get all --all-namespaces
