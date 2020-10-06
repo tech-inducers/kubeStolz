@@ -1,16 +1,13 @@
 # kubeStolz
 kubeStolz is hybrid multi cloud Kubernetes cluster
 
-Deploy a multicloud dev Kubernetes Cluster
+Deploy a multicloud dev Kubernetes Cluster (GCP vm and AWS ec2 and its vpn connection)
 
 
 Quick Start
-f you have questions, check the documentation and join us on the   #kubeStloz You can get your invite here
+if you have questions, check the documentation and join us on the   #kubeStloz You can get your invite here
 
 Prerequisite
-
-create service account in GCP
-Create key pair in aws and update in terraform key_pair
 
 Install terraform
 https://www.terraform.io/downloads.html
@@ -22,12 +19,15 @@ Jinja 2.11 (or newer) is required to run the Ansible Playbooks
 Terraform execution
 
 $terraform init
+
 $terraform validate
+
 $terraform plan
+
 $terraform apply
 
-Kubespray execution 
-Clone kubespray
+Kubespray execution
+ # Clone kubespray
 git clone https://github.com/kubernetes-sigs/kubespray.git
 
 # Install dependencies from ``requirements.txt``
@@ -36,7 +36,7 @@ sudo pip3 install -r requirements.txt
 # Copy ``inventory/sample`` as ``inventory/mycluster``
 cp -rfp inventory/sample inventory/mycluster
 
-#create inventory file
+# create inventory file
 Example file
 all:
   hosts:
