@@ -7,7 +7,7 @@ Deploy a multicloud dev Kubernetes Cluster (GCP vm and AWS ec2 and its vpn conne
 Quick Start
 if you have questions, check the documentation and join us on the   #kubeStloz You can get your invite here
 
-Prerequisite
+# Prerequisite
 
 # Install terraform
 
@@ -24,8 +24,11 @@ Jinja 2.11 (or newer) is required to run the Ansible Playbooks
 # Terraform execution
 
 $terraform init
+
 $terraform validate
+
 $terraform plan
+
 $terraform apply
 
 # Kubespray execution
