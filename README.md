@@ -5,8 +5,7 @@ Deploy a multicloud dev Kubernetes Cluster (GCP vm and AWS ec2 and its vpn conne
 
 
 Quick Start
-if you have questions, check the documentation and join us on the   #kubeStloz You can get your invite here
-
+if you have questions, check the documentation  https://github.com/tech-inducers/kubeStolz/wiki and join us on the #kubeStloz
 # Prerequisite
 
 Install terraform
