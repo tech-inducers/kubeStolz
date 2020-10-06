@@ -9,25 +9,27 @@ if you have questions, check the documentation and join us on the   #kubeStloz Y
 
 Prerequisite
 
-Install terraform
+# Install terraform
+
 https://www.terraform.io/downloads.html
 
-Create cluster using kubespray
+# Create cluster using kubespray
+
 https://kubernetes.io/docs/setup/production-environment/tools/kubespray/
+
+# install ansible and jinja
 Ansible v2.9 and python-netaddr is installed on the machine that will run Ansible commands
 Jinja 2.11 (or newer) is required to run the Ansible Playbooks
-Terraform execution
+
+# Terraform execution
 
 $terraform init
-
 $terraform validate
-
 $terraform plan
-
 $terraform apply
 
-Kubespray execution
- # Clone kubespray
+# Kubespray execution
+# Clone kubespray
 git clone https://github.com/kubernetes-sigs/kubespray.git
 
 # Install dependencies from ``requirements.txt``
