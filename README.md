@@ -46,8 +46,11 @@ Example file
 all:
   hosts:
     ip-10-0-0-25: (hostname defined in terraform for aws ec2)
+
       ansible_host: 54.200.87.20 (public ip of aws ec2)
+
       ansible_ssh_user: ubuntu (ec2 username defined in terraform)
+      
       ansible_ssh_private_key_file: (file path to ec2 pem file
       ip: 10.0.0.25 (private ip of aws ec2)
       access_ip: 10.0.0.25 (private ip of aws ec2)
