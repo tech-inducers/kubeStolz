@@ -88,13 +88,18 @@ ansible-playbook -I path to hosts.yml file   --become --become-user=root cluster
 # rerun create cluster if it fails or skipped
 
 # validate cluster creation
+
 $kubectl get all --all-namespaces
+
 if you find the The connection to the server localhost:8080 was refused - did you specify the right host or port?
 
 Follow the following steps
 # ssh to master node
 
 $mkdir -p $HOME/.kube
+
 $sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
 $udo chmod 777 $HOME/.kube/config
+
 $kubectl get all --all-namespaces
