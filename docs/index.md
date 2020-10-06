@@ -1,37 +1,112 @@
-## KubeStolz
+# kubeStolz
+kubeStolz is hybrid multi cloud Kubernetes cluster
 
-You can use the [editor on GitHub](https://github.com/tech-inducers/kubeStolz/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Deploy a multicloud dev Kubernetes Cluster (GCP vm and AWS ec2 and its vpn connection)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+Quick Start
+if you have questions, check the documentation  https://github.com/tech-inducers/kubeStolz/wiki and join us on the #kubeStloz
+# Prerequisite
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Install terraform
 
-```markdown
-Syntax highlighted code block
+https://www.terraform.io/downloads.html
 
-# Header 1
-## Header 2
-### Header 3
+# Create cluster using kubespray
 
-- Bulleted
-- List
+https://kubernetes.io/docs/setup/production-environment/tools/kubespray/
 
-1. Numbered
-2. List
+install ansible and jinja
+Ansible v2.9 and python-netaddr is installed on the machine that will run Ansible commands
+Jinja 2.11 (or newer) is required to run the Ansible Playbooks
 
-**Bold** and _Italic_ and `Code` text
+# Terraform execution
 
-[Link](url) and ![Image](src)
-```
+go to dev directory
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+$terraform init
 
-### Jekyll Themes
+$terraform validate
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tech-inducers/kubeStolz/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+$terraform plan
 
-### Support or Contact
+$terraform apply
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Kubespray execution
+
+git clone https://github.com/kubernetes-sigs/kubespray.git
+
+go to kubespray directory
+
+Install dependencies from requirements.txt
+
+sudo pip3 install -r requirements.txt
+
+Copy inventory/sample  as inventory/mycluster
+cp -rfp inventory/sample inventory/mycluster
+
+# create inventory file
+Example file
+all:
+  hosts:
+    ip-10-0-0-25: (hostname defined in terraform for aws ec2)
+
+      ansible_host: 54.200.87.20 (public ip of aws ec2)
+
+      ansible_ssh_user: ubuntu (ec2 username defined in terraform)
+
+      ansible_ssh_private_key_file: (file path to ec2 pem file
+      ip: 10.0.0.25 (private ip of aws ec2)
+      access_ip: 10.0.0.25 (private ip of aws ec2)
+
+    gcp-vm-us-central1:
+      ansible_host: 34.71.104.88 (public ip of gcp vm)
+      ip: 10.240.0.100 (private ip of gcp vm)
+      access_ip: 10.240.0.100 (private ip of gcp vm)
+
+  children:
+    kube-master:
+      hosts:
+        gcp-vm-us-central1: (master node we deined as gcp vm)
+
+    kube-node:
+      hosts:
+        ip-10-0-0-25: (aws ec2 vm hostname)
+        gcp-vm-us-central1: (gcp vm hostname)
+
+    etcd:
+      hosts:
+gcp-vm-us-central1: (master hostname)
+
+    k8s-cluster:
+      children:
+        kube-master:
+        kube-node:
+    calico-rr:
+      hosts: {}
+
+
+# check ssh connection of aws ec2 and gcp vm
+ansible -i  path to hosts.yml file -m shell -a 'hostnamectl' all
+
+# create cluster using kubespray ansible command
+ansible-playbook -I path to hosts.yml file   --become --become-user=root cluster.yml
+
+# rerun create cluster if it fails or skipped
+
+# validate cluster creation
+
+$kubectl get all --all-namespaces
+
+if you find the The connection to the server localhost:8080 was refused - did you specify the right host or port?
+
+Follow the following steps
+# ssh to master node
+
+$mkdir -p $HOME/.kube
+
+$sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+$udo chmod 777 $HOME/.kube/config
+
+$kubectl get all --all-namespaces
