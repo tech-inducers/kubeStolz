@@ -18,8 +18,7 @@ It has been designed to provide the view of multi cloud or hybrid cloud environm
 
 ![](images/kubestloz_mulicloud-conecpt.jpg)
 
-
-                                         Fig 2 Hybrid kubernetes cluster concept
+Fig 2 Hybrid kubernetes cluster concept
 
 ## Use case(s) that applicable for multicloud hybrid kubenetes cluster
 
@@ -34,7 +33,8 @@ It has been designed to provide the view of multi cloud or hybrid cloud environm
 
 ![](images/kubestloz_roadmap_arch_update.jpg)
 
-                                          Fig 3 Information system view
+Fig 3 Information system view
+
 ### Components
 * Network canvas engine - for drawing production grade network design for the multi cloud cluster, it shall generate json files and can be converted hcl for terraform specific configuration file
 * Restful Service for CRUD operation of cluster - output will be converted to hcl for terraform execution
@@ -48,7 +48,7 @@ It has been designed to provide the view of multi cloud or hybrid cloud environm
 
 ![](images/automated-network-deployment-3-architecture.svg)
 
-                                           Fig 4 gcp-aws multicloud cluster creation using terraform
+Fig 4 gcp-aws multicloud cluster creation using terraform
 
 [Github code repo](https://github.com/tech-inducers/kubeStolz)
 
