@@ -11,7 +11,7 @@ KubeStolz is a open-source multi cloud hybrid Kubernetes cluster fully lifecycle
 
 ![](images/kubestloz_Roadmap.jpg)
 
-                                          Fig 1 KubeStloz frmaework
+<c> Fig 1 KubeStloz frmaework </c>
 
 ## concept
 It has been designed to provide the view of multi cloud or hybrid cloud environment -control-plane/controller can be fully managed by organization specific private cloud or bare-metal Kubernetes installation
